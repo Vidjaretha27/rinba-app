@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">RindikApp</string>
+    <string name="logo">Logo</string>
+    <string name="start">Mulai</string>
+    <string name="how_to_play">Cara Bermain</string>
+    <string name="about">Tentang Aplikasi</string>
+    <string name="setting">Setting</string>
+    <string name="back_button">Back Button</string>
+    <string name="level_type">Jenis Level</string>
+
+    <!-- Long String Description -->
+    <string name="how_to_play_description">1. Pemain hanya menggunakan 1 rindik \n2. Permainan rindik menggunakan 2 buah pemukul karet \n3. Aplikasi akan mendeteksi suara dari rindik pemain \n4. Ikuti tahapan pembelajaran rindik dengan baik \n5. Lakukan latihan sampai dirasa sudah lancar</string>
+    <string name="about_description">Aplikasi ini dibuat untuk menyelesaikan Tugas Akhir Gusti Ayu Vidjaretha Wardana di Jurusan Ilmu Komputer, Universitas Udayana. Dengan tujuan agar generasi muda tetap mengenal dan bisa terus memelihara kebudayaan Indonesia, khususnya alat musik Rindik yang berasal dari Bali.</string>
+
+    <!-- Level Type -->
+    <string name="one_hand_level">SATU TANGAN \n (PEMULA)</string>
+    <string name="two_hand_level">DUA TANGAN \n (LANJUTAN)</string>
+    <string name="level_beginner">Level Pemula</string>
+    <string name="level_advanced">Level Lanjutan</string>
+
+    <!-- Level Number -->
+    <string name="level_1">1</string>
+    <string name="level_2">2</string>
+    <string name="level_3">3</string>
+    <string name="level_4">4</string>
+    <string name="level_5">5</string>
+
+    <!-- Bilah Number -->
+    <string name="bilah_1">1</string>
+    <string name="bilah_2">2</string>
+    <string name="bilah_3">3</string>
+    <string name="bilah_4">4</string>
+    <string name="bilah_5">5</string>
+    <string name="bilah_6">6</string>
+    <string name="bilah_7">7</string>
+    <string name="bilah_8">8</string>
+    <string name="bilah_9">9</string>
+    <string name="bilah_10">10</string>
+    <string name="bilah_11">11</string>
+
+    <!-- Play Activity -->
+    <string name="initial_text">Selamat Bermain !</string>
+    <string name="record">Rekam</string>
+    <string name="stop">Berhenti</string>
+    <string name="recording">Merekam...</string>
+    <string name="stopped">Selesai...</string>
+
+</resources>
