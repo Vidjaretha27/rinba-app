@@ -14,7 +14,7 @@ class RindikRecorder(
     private var filePath: String = context.externalCacheDir?.absolutePath + "/$fileName.wav"
     private var waveRecorder: WaveRecorder = WaveRecorder(filePath)
 
-    private var counter = -1
+    var counter = -1
 
     init {
         waveRecorder.onStateChangeListener = onStateChangeListener

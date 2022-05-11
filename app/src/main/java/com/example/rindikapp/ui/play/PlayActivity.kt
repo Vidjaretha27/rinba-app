@@ -21,6 +21,7 @@ import com.example.rindikapp.utils.Constants.ADVANCED
 import com.example.rindikapp.utils.Constants.BEGINNER
 import com.example.rindikapp.utils.Pattern.ADVANCED_PATTERN
 import com.example.rindikapp.utils.Pattern.BEGINNER_PATTERN
+import com.example.rindikapp.utils.Status
 import com.example.rindikapp.viewmodel.MainViewModel
 import com.github.squti.androidwaverecorder.RecorderState
 import dagger.hilt.android.AndroidEntryPoint
@@ -88,6 +89,37 @@ class PlayActivity : AppCompatActivity() {
                 }
             }
         )
+
+        // Observe loading state (EDIT THIS)
+        val progressDialog = AlertDialog.Builder(this)
+            .setView(R.layout.layout_progress_bar)
+            .setCancelable(false)
+            .create()
+        viewModel.isLoading.observe(this) { isLoading ->
+            Log.d("PlayActivity", "isLoading=$isLoading")
+            if (isLoading) {
+                progressDialog.show()
+            }
+        }
+
+        // Observe error message
+        viewModel.errorMessage.observe(this) { message ->
+            AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("OK", { _, _ ->
+                    rindikRecorder.counter--
+                })
+                .create()
+                .show()
+        }
+
+        viewModel.currentPrediction.observe(this) {
+            if (it.status == Status.SUCCESS) {
+                progressDialog.dismiss()
+            }
+        }
 
         // Button Listener
         binding?.apply {
@@ -170,7 +202,7 @@ class PlayActivity : AppCompatActivity() {
                 "counter=$counter, bilah=$bilah, audio=${audio.name}"
             )
 
-            val expectedBilah = "Bilah $BEGINNER.1.$bilah"
+            val expectedBilah = "Bilah $bilah"
             val expectedBilahPart: RequestBody =
                 expectedBilah.toRequestBody(MultipartBody.FORM)
             val audioRequestBody = audio.asRequestBody()
