@@ -2,7 +2,6 @@ package com.example.rindikapp.data.repository
 
 import com.example.rindikapp.data.api.RetrofitService
 import com.example.rindikapp.data.model.Prediction
-import com.example.rindikapp.utils.RequestStatus.SUCCESS
 import com.example.rindikapp.utils.Resource
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -19,7 +18,7 @@ class MainRepositoryImpl constructor(
             val response = retrofitService.predictBilah(expectedBilah, audio)
             val responseBody = response.body()
 
-            if (response.isSuccessful && responseBody?.status == SUCCESS) {
+            if (response.isSuccessful && responseBody?.status == "success") {
                 Resource.success(responseBody.data)
             } else {
                 Resource.error(response.message())

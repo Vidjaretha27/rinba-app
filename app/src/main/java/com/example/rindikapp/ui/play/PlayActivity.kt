@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -14,8 +13,9 @@ import androidx.core.content.ContextCompat
 import com.example.rindikapp.R
 import com.example.rindikapp.databinding.ActivityPlayBinding
 import com.example.rindikapp.recorder.RindikRecorder
-import com.example.rindikapp.ui.main.MainActivity
 import com.example.rindikapp.ui.other.HowToPlayActivity
+import com.example.rindikapp.ui.pick.type.TypeActivity
+import com.example.rindikapp.ui.score.ScoreDialogFragment
 import com.example.rindikapp.utils.BilahImageView
 import com.example.rindikapp.utils.Constants.ADVANCED
 import com.example.rindikapp.utils.Constants.BEGINNER
@@ -96,7 +96,6 @@ class PlayActivity : AppCompatActivity() {
             .setCancelable(false)
             .create()
         viewModel.isLoading.observe(this) { isLoading ->
-            Log.d("PlayActivity", "isLoading=$isLoading")
             if (isLoading) {
                 progressDialog.show()
             }
@@ -105,11 +104,14 @@ class PlayActivity : AppCompatActivity() {
         // Observe error message
         viewModel.errorMessage.observe(this) { message ->
             AlertDialog.Builder(this)
-                .setTitle("Error")
+                .setTitle(getString(R.string.error))
                 .setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton("OK", { _, _ ->
-                    rindikRecorder.counter--
+                .setPositiveButton(getString(R.string.ok), { _, _ ->
+                    Intent(this, TypeActivity::class.java).also {
+                        startActivity(it)
+                        finish()
+                    }
                 })
                 .create()
                 .show()
@@ -182,6 +184,15 @@ class PlayActivity : AppCompatActivity() {
     private fun beginnerLevel(counter: Int, audio: File) {
         val pattern = BEGINNER_PATTERN[level!!]
 
+        if (counter == pattern.size - 1) {
+            val bundle = Bundle()
+            bundle.putInt(ScoreDialogFragment.EXTRA_SCORE, viewModel.score.value!!)
+            val dialog = ScoreDialogFragment()
+            dialog.arguments = bundle
+            dialog.show(supportFragmentManager, ScoreDialogFragment::class.java.simpleName)
+            return
+        }
+
         if (counter < pattern.size) {
             // Set highlight in Bilah
             val prevIndex = pattern[counter] - 1
@@ -215,24 +226,25 @@ class PlayActivity : AppCompatActivity() {
             viewModel.setCurrentPrediction(expectedBilahPart, audioPart)
 
         } else {
-            // TODO : Ganti dengan fragment hasil score
-            Toast.makeText(this@PlayActivity, "Selesai", Toast.LENGTH_SHORT)
-                .show()
-            val dialogBuilder = AlertDialog.Builder(this@PlayActivity)
-                .setMessage("Hasil score Anda adalah ${viewModel.score.value!!}")
-                .setCancelable(false)
-                .setPositiveButton("OK", { _, _ ->
-                    // Intent to main menu
-                    Intent(this@PlayActivity, MainActivity::class.java).also {
-                        startActivity(it)
-                    }
-                }).setTitle("Hasil").create()
-            dialogBuilder.show()
+            val bundle = Bundle()
+            bundle.putInt(ScoreDialogFragment.EXTRA_SCORE, viewModel.score.value!!)
+            val dialog = ScoreDialogFragment()
+            dialog.arguments = bundle
+            dialog.show(supportFragmentManager, ScoreDialogFragment::class.java.simpleName)
         }
     }
 
     private fun advancedLevel(counter: Int, audio: File) {
         val pattern = ADVANCED_PATTERN[level!!]
+
+        if (counter == pattern[0].size - 1) {
+            val bundle = Bundle()
+            bundle.putInt(ScoreDialogFragment.EXTRA_SCORE, viewModel.score.value!!)
+            val dialog = ScoreDialogFragment()
+            dialog.arguments = bundle
+            dialog.show(supportFragmentManager, ScoreDialogFragment::class.java.simpleName)
+            return
+        }
 
         if (counter < pattern[0].size) {
             val patternLeft = pattern[0]
@@ -291,20 +303,11 @@ class PlayActivity : AppCompatActivity() {
             viewModel.setCurrentPrediction(expectedBilahPart, audioPart)
 
         } else {
-            // TODO : Ganti dengan fragment hasil score
-            Toast.makeText(this@PlayActivity, "Selesai", Toast.LENGTH_SHORT)
-                .show()
-            val dialogBuilder = AlertDialog.Builder(this@PlayActivity)
-                .setMessage("Hasil score Anda adalah ${viewModel.score.value!!}")
-                .setCancelable(false)
-                .setPositiveButton("OK", { _, _ ->
-                    // Intent to main menu
-                    Intent(this@PlayActivity, MainActivity::class.java).also {
-                        startActivity(it)
-                        finish()
-                    }
-                }).setTitle("Hasil").create()
-            dialogBuilder.show()
+            val bundle = Bundle()
+            bundle.putInt(ScoreDialogFragment.EXTRA_SCORE, viewModel.score.value!!)
+            val dialog = ScoreDialogFragment()
+            dialog.arguments = bundle
+            dialog.show(supportFragmentManager, ScoreDialogFragment::class.java.simpleName)
         }
     }
 
