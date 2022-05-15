@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RindikApp</string>
+    <string name="app_name">Rinba App</string>
     <string name="logo">Logo</string>
     <string name="start">Mulai</string>
     <string name="how_to_play">Cara Bermain</string>
@@ -52,5 +52,6 @@
     <string name="yes">Ya</string>
     <string name="ok">OK</string>
     <string name="error">Error</string>
+    <string name="splashscreen">SplashScreen</string>
 
 </resources>
