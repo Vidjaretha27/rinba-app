@@ -9,8 +9,8 @@
     <string name="level_type">Jenis Level</string>
 
     <!-- Long String Description -->
-    <string name="how_to_play_description">1. Pemain hanya menggunakan 1 rindik \n2. Permainan rindik menggunakan 2 buah pemukul karet \n3. Aplikasi akan mendeteksi suara dari rindik pemain \n4. Ikuti tahapan pembelajaran rindik dengan baik \n5. Lakukan latihan sampai dirasa sudah lancar</string>
-    <string name="about_description">Aplikasi ini dibuat untuk menyelesaikan Tugas Akhir Gusti Ayu Vidjaretha Wardana di Jurusan Ilmu Komputer, Universitas Udayana. Dengan tujuan agar generasi muda tetap mengenal dan bisa terus memelihara kebudayaan Indonesia, khususnya alat musik Rindik yang berasal dari Bali.</string>
+    <string name="how_to_play_description">1. Smartphone yang digunakan harus memiliki jaringan internet\n2. Pemain hanya menggunakan 1 rindik dengan 11 bilah\n3. Permainan rindik hanya menggunakan 2 pemukul karet (panggul)\n4. Aplikasi akan mendeteksi suara rindik dari pemain\n5. Pemain diminta mengikuti pukulan sesuai yang diarahkan\n6. Saat pemain menekan tombol rekam, pukul bilah yg diminta sekali lalu tekan tombol selesai\n7. Setelah pemain menyelesaikan 1 level, akan terlihat poin sesuai pukulan yg benar\n8. Ikuti tahapan pembelajaran rindik dengan baik</string>
+    <string name="about_description">Aplikasi ini dibuat untuk menyelesaikan Tugas Akhir Gusti Ayu Vidjaretha Wardana di Program Studi Informatika, Universitas Udayana.\n\n Aplikasi Rinba adalah sebuah aplikasi latihan dasar pada alat musik Rindik Bali yang menggunakan inputan suara. Dengan adanya aplikasi ini diharapkan generasi muda tetap mempelajari dan terus memelihara kebudayaan Bali khususnya alat musik rindik.</string>
 
     <!-- Level Type -->
     <string name="one_hand_level">SATU TANGAN \n (PEMULA)</string>
